@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title style="color:green;">Prediction Result</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/script.js' %}" defer></script>
+</head>
+<body bgcolor="bisque">
+    <h1 style="color:saddlebrown;">Prediction Result</h1>
+     
+    <div class="image-container">
+        <img src="{{ img_path }}" alt="Uploaded Image" id="predicted-image">
+        <div id="scan-line" class="scan-line" style="display: none;"></div>
+    </div>
+    
+    <h2 id="result" style="display: none;">{{ result }}</h2>
+    
+    <div id="prescription-details" style="display: none;">
+        {% if result == 'Pneumonia Detected' %}
+            <p><strong>Medication:</strong> {{ medication }}</p>
+            <p><strong>Message:</strong> {{ message }}</p>
+        {% elif result == 'Healthy' %}
+            <p><strong>Medication:</strong> None</p>
+            <p><strong>Message:</strong> No medication required. Maintain a healthy lifestyle.</p>
+        {% elif result == 'Unknown' %}
+            <p><strong>Error:</strong> Invalid Image</p>
+            <p><strong>Warning:</strong> {{ message }}</p>
+        {% endif %}
+    </div>
+    <a href="/" class="go-back-link">Go back</a>
+</body>
+</html>

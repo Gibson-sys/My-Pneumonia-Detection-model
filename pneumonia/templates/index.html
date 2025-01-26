@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pneumonia Detection</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body bgcolor="bisque">
+    <img src= "https://www.stockvault.net/data/2011/10/11/127451/preview16.jpg"
+    width="600" height="150" alt="">
+    <h1 style="color: red;font-size:90px;">HealthcomAI</h1>
+    <h1 style="color:darkgreen;">Upload X-ray Image for Pneumonia Detection</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="image" accept="image/*" required>
+        <button type="submit">Predict</button>
+    </form>
+
+    <div id="spinner" class="spinner" style="display:none;"></div>
+</body>
+</html>
+
